@@ -1,12 +1,17 @@
 const fs=require('fs');
 
-fs.readFile('file2.txt','utf-8', (err,data) => {
+fs.readFile('file1.txt','utf-8', (err,data) => {
     if(err)
     {
         return;
     }
-    let first=data;
-
-    fs.writeFile('file2.txt',`new content with ${first} `,()=>{});
-
+    console.log(data);
 } )
+
+fs.writeFile('file2.txt','Hello guys this is write operation', (err,data) => {
+    if(err)
+    {
+        return;
+    }
+    console.log("data written succesfully");
+} );
