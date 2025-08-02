@@ -2,16 +2,22 @@ const express=require('express');
 const app=express();
 const path=require('path');
 
+const logs=require('./util/logs');
+const authorize=require('./util/authorize');
+
 const products=require('./data/products');
-const fillPrd = require('./util/filterProduct');
+
+
 
 //const fs=require('fs');
 
 // const data=fs.readFileSync('./files/file2.txt');
 
-app.use(express.static('./static'));
+app.use([logs,authorize]);
 
-app.get('/', (req,res) => {
+// app.use(express.static('./static'));
+
+app.get('/', logs, (req,res) => {
     res.send(`<h1>Home Page</h1>`);
 })
 
