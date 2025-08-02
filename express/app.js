@@ -2,9 +2,11 @@ const express=require('express');
 const app=express();
 const path=require('path');
 
-const fs=require('fs');
+//const fs=require('fs');
 
 // const data=fs.readFileSync('./files/file2.txt');
+
+app.use(express.static('./static'));
 
 app.get('/', (req,res) => {
     res.send(`<h1>Home Page</h1>`);
@@ -17,6 +19,10 @@ app.get('/about', (req,res) => {
 app.get('/fileread', (req,res) => {
     console.log(__dirname);
     res.sendFile(path.resolve(__dirname,'./files/file2.txt'));
+} )
+
+app.get('/webfile', (req,res) => {
+    res.sendFile(path.resolve(__dirname,'./static/index.html'));
 } )
 
 app.all('*', (req,res) => {
