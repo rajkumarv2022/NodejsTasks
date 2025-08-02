@@ -13,7 +13,7 @@ const products=require('./data/products');
 
 // const data=fs.readFileSync('./files/file2.txt');
 
-app.use(authorize);
+app.use([logs,authorize]);
 
 // app.use(express.static('./static'));
 

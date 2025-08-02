@@ -4,8 +4,6 @@ const authorize = (req,res,next) => {
     if(name)
     {
         req.user=name;
-        console.log(req.user);
-        console.log("Hii");
     }
 
     next();
