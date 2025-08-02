@@ -13,12 +13,16 @@ const products=require('./data/products');
 
 // const data=fs.readFileSync('./files/file2.txt');
 
-app.use([logs,authorize]);
+app.use(authorize);
 
 // app.use(express.static('./static'));
 
-app.get('/', logs, (req,res) => {
-    res.send(`<h1>Home Page</h1>`);
+app.get('/', (req,res) => {
+    if(req.user!=null)
+    {
+        return res.send(`<h1>Hello ${req.user} This is Home Page</h1>`);
+    }
+    res.status(401).send('<h1>Not Authorized</h1>');
 })
 
 app.get('/about', (req,res) => {
