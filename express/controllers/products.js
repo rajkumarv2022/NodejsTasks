@@ -1,4 +1,4 @@
-const products = require('../data/products');
+let products = require('../data/products');
 const path=require('path');
 
 const fileread = (req,res) => {
@@ -59,9 +59,58 @@ const getProdById = (req,res) => {
     
 }
 
+const addPrd = (req,res) => {
+
+    const prd=req.body;
+
+    products=[...products,prd];
+
+    res.send(products);
+
+}
+
+const updatePrd = (req,res) => {
+
+    const {id}=req.params;
+    
+    const product=req.body;
+    
+    products=products.map( (prd) => {
+        
+        if(prd.id===Number(id))
+        {
+            prd.name=product.name;
+            prd.desc=product.desc;    
+        }
+
+        return prd;
+
+    } )
+
+    res.send("Updated Product");
+
+}
+
+const delPrd = (req,res) => {
+
+    const {id}=req.params;
+
+    products=products.filter( (prd) => {
+        if(prd.id!==Number(id))
+        {
+            return true;
+        }
+    } )
+
+    res.send("Product deleted");
+}
+
 module.exports = {
     fileread,
     webfile,
     getProduct,
-    getProdById
+    getProdById,
+    addPrd,
+    updatePrd,
+    delPrd
 };

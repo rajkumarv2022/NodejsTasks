@@ -12,7 +12,10 @@ const prdRoute=require('./routers/products');
 
 // const data=fs.readFileSync('./files/file2.txt');
 
-app.use([logs,authorize]);
+// app.use([logs,authorize]);
+
+app.use(express.urlencoded());
+app.use(express.json());
 
 app.use('/api',prdRoute);
 
