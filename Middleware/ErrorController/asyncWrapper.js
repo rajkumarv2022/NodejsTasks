@@ -1,12 +1,12 @@
 const asyncWrapper = (fn) => {
-   return async (req,res) => {
+   return async (req,res,next) => {
     try
     {
-        await fn(req,res);
+        await fn(req,res,next);
     }
     catch(e)
     {
-        res.send(e.message);
+       next(e);
     }
 
    }

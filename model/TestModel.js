@@ -1,10 +1,14 @@
 const asyncWrapper = require('../Middleware/ErrorController/asyncWrapper');
+const {createError} = require('../Middleware/ErrorController/ErrorCreator');
 
-const getTest= asyncWrapper ( (req,res)=>{
-
-        const error = new Error('Not Found');
-        error.status=500;
-        throw error;
+const getTest= asyncWrapper ( (req,res,next)=>{
+        const {name}=req.body;
+        if(name==null)
+        {
+            const err=createError("not found",404);
+            return next(err);
+        }
+    
         res.send('gettest');
 
 }
