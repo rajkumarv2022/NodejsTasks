@@ -1,4 +1,4 @@
-const {CustomError} = require('../ErrorController/ErrorCreator');
+const {CustomError} = require('./ErrorCreator');
 
 const errorController = (err,req,res,next) => {
 
