@@ -5,10 +5,13 @@ const dbconeect = require('./db/connect');
 const app = express();
 
 const router = require('./router/router');
+const errorHandler = require('./ErrorController/ErrorHandler');
 
 app.use(express.json());
 
 app.use('/api',router);
+
+app.use(errorHandler);
 
 const start = () => {
 

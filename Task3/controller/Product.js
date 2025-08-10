@@ -2,25 +2,43 @@ const product = require('../model/product');
 
 const getPrd = async (req,res) =>
 {
-    const prd=await product.find({});
+    const queryObject={};
+
+    const{name,sort}=req.query;
+    console.log(req.query);
+
+    if(name)
+    {
+        queryObject.name=name;
+    }
+
+    let result=product.find(queryObject);
+
+    if(sort)
+    {
+        const field={};
+
+        sort.split(',').forEach((ele) => {
+            field[ele]=1
+        })
+        //console.log(field);
+        //const field={'name' : 1,'price':1};
+        result.sort(field);
+         
+    }
+
+    prd=await result;
+
     res.json(prd);
 }
 
 const createPrd = async (req,res) => {
 
-    try
-    {
         const prd=req.body;
 
         await product.create(prd);
 
         res.json(prd);
-
-    }
-    catch(e)
-    {
-        res.status(400).send(e);
-    }
 
 }
 
