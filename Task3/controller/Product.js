@@ -23,7 +23,8 @@ const getPrd = async (req,res) =>
         })
         //console.log(field);
         //const field={'name' : 1,'price':1};
-        result.sort(field);
+        result.sort(field).select('name price');
+        //result.sort(field)
          
     }
 
