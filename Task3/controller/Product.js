@@ -1,17 +1,26 @@
 const product = require('../model/product');
 
-const getPrd = (req,res) =>
+const getPrd = async (req,res) =>
 {
-    res.send('hello from getPrd');
+    const prd=await product.find({});
+    res.json(prd);
 }
 
-const createPrd = (req,res) => {
+const createPrd = async (req,res) => {
 
-    const prd=req.body;
+    try
+    {
+        const prd=req.body;
 
-    product.create(prd);
+        await product.create(prd);
 
-    res.json(prd);
+        res.json(prd);
+
+    }
+    catch(e)
+    {
+        res.status(400).send(e);
+    }
 
 }
 
