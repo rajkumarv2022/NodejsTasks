@@ -4,17 +4,31 @@ const dbconeect = require('./db/connect');
 
 const app = express();
 
-try
-{
+const router = require('./router/router');
 
-    dbconeect();
-    app.listen(3000, () => {
+app.use(express.json());
 
-        console.log("server listening on port 3000");
-    } )
+app.use('/api',router);
+
+const start = () => {
+
+    try
+    {
+
+        dbconeect();
+        app.listen(3000, () => {
+
+            console.log("server listening on port 3000");
+        } )
+
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+
 
 }
-catch(e)
-{
-    console.log(e);
-}
+
+start();
+

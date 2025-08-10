@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema(
 
     price:{
         type:Number,
-        required:[true,'price must be entered'];
+        required:[true,'price must be entered']
     },
 
     ratting:{
@@ -17,9 +17,10 @@ const productSchema = new mongoose.Schema(
         default:4.5
     },
     company:{
+        type:String,
         enum:{
-            value:[com1,com2],
-            message:'{value} not supported'
+            values:['com1','com2'],
+            message:'{VALUE} not supported'
         }
     }
 }
